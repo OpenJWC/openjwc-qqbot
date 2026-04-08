@@ -1,0 +1,33 @@
+[project]
+name = "openjwc-qqbot"
+version = "0.1.0"
+description = "openjwc-qqbot"
+readme = "README.md"
+requires-python = ">=3.10, <4.0"
+dependencies = [
+    "nonebot-adapter-onebot>=2.4.6",
+    "nonebot-adapter-console>=0.9.0",
+    "nonebot-plugin-status>=0.9.0",
+    "nb-cli",
+    "nonebot-plugin-apscheduler>=0.5.0",
+    "httpx>=0.28.1",
+    "nonebot-plugin-orm>=0.8.3",
+    "aiosqlite>=0.22.1",
+    "nonebot2[fastapi,httpx,websockets]>=2.5.0",
+]
+
+[tool.nonebot]
+plugin_dirs = ["plugins"]
+builtin_plugins = ["echo"]
+
+[tool.nonebot.adapters]
+nonebot-adapter-onebot = [
+    { name = "OneBot V11", module_name = "nonebot.adapters.onebot.v11" },
+]
+"@local" = []
+
+[tool.nonebot.plugins]
+"@local" = []
+nonebot_plugin_localstore = ["nonebot_plugin_localstore"]
+nonebot_plugin_orm = ["nonebot_plugin_orm"]
+nonebot-plugin-apscheduler = ["nonebot_plugin_apscheduler"]

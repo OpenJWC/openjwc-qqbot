@@ -1,0 +1,47 @@
+# openjwc-qqbot
+
+## 快速上手
+在仓库根目录创建 `.env.prod`
+
+```ini
+LOG_LEVEL=DEBUG
+ENVIRONMENT=dev
+FASTAPI_RELOAD=false
+DRIVER=~fastapi+~httpx+~websockets
+# 代理配置
+SOCKS_PROXY=
+HTTP_PROXY=
+HTTPS_PROXY=
+# 本项目使用 正向 websocket 连接。NoneBot 作为客户端，连接 WebSocket 服务器（如 NapCat）
+# 在此处填入你的 OneBot Token（若使用 NapCat，请在“网络连接-WebSocket 服务器”中配置好 Token”）
+ONEBOT_ACCESS_TOKEN=here_is_your_token
+# 服务器地址
+ONEBOT_WS_URLS=["ws://127.0.0.1:3001"]
+COMMAND_START='["/", ""]'
+
+# 填入 OpenJWC API Key
+OPENJWC_AUTH_KEY="sk-here_is_your_api_key"
+
+# 有管理员权限的 QQ 群号，用于发送 @ 全体成员的通知
+OPENJWC_NOTICE_GROUPS='[114514, 1919810]'
+
+# OpenJWC 服务器主机
+OPENJWC_HOST="101.132.106.186"
+# OpenJWC 服务器端口
+OPENJWC_PORT=8000
+# 使用不安全的 HTTP
+OPENJWC_USE_HTTP=true
+# 设备唯一标识
+OPENJWC_DEVICE_ID="foo_bar_bot_01"
+
+# 轮询资讯间隔
+OPENJWC_CHECK_INTERVAL=5
+
+# 数据库存放位置
+LOCALSTORE_CACHE_DIR="./data/cache"
+LOCALSTORE_CONFIG_DIR="./data/config"
+LOCALSTORE_DATA_DIR="./data/data"
+```
+
+## 开源
+MIT License

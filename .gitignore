@@ -4,5 +4,3 @@ __pycache__
 *.db
 data
 /.env.prod
-.env.*
-.env

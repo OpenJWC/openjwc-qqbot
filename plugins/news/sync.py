@@ -2,17 +2,15 @@ from datetime import datetime
 from typing import List
 
 from nonebot import get_bot, get_plugin_config, logger
+from nonebot.adapters.onebot.v11 import MessageSegment
 from nonebot_plugin_apscheduler import scheduler
-from nonebot_plugin_orm import get_session
-from sqlalchemy import select
-from nonebot.adapters.onebot.v11 import MessageSegment, Message
 
 from .client import NewsFetcher
 from .config import Config
-from .model import FetchedNotice, PushedNotice
+from .model import FetchedNotice
+from .search import *
 
 config = get_plugin_config(Config)
-
 
 @scheduler.scheduled_job(
     "interval",
@@ -46,7 +44,16 @@ async def sync_news():
 
                 if not exists:
                     new_notices.append(notice)
-                    session.add(PushedNotice(id=notice.id))
+                    session.add(PushedNotice(
+                        id=notice.id,
+                        label=notice.label,
+                        title=notice.title,
+                        date=notice.date,
+                        detail_url=notice.detail_url,
+                        is_page=notice.is_page,
+                        content_text=notice.content_text,
+                        attachment_urls=notice.attachment_urls
+                    ))
 
         await session.commit()
 
@@ -83,3 +90,4 @@ async def send_combined_notification(notices: List[FetchedNotice], has_more: boo
             await bot.send_group_msg(group_id=group_id, message=msg)
         except Exception as e:
             logger.error(f"发送失败: {e}")
+

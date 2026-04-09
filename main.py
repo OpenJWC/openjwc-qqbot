@@ -23,7 +23,7 @@ def run_bot():
     nonebot.load_builtin_plugin("echo")
 
     try:
-        print("正在加载业务插件 fetch_news...")
+        print("正在加载业务插件 news...")
         nonebot.load_plugins("plugins")
         print("业务插件加载成功")
     except Exception:

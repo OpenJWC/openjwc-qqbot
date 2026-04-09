@@ -8,6 +8,13 @@
 3. 运行 `uv run nb run`； 
 4. Bot 工作！
 
+## 功能
+1. 轮询 OpenJWC 服务器，获取最新资讯并群发；
+2. 多种群指令轻松获取资讯：
+   - `/status` 确认 Bot 是否存活；
+   - `/check <标签名>` 查找对应标签中 OpenJWC 存储的最新资讯；
+   - `/search <搜索内容>` 调用 OpenJWC Api，语义化搜索资讯。
+
 ## FAQ
 1. Q: 初次运行 Bot，出现如下错误：
     ```

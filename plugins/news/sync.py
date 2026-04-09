@@ -1,12 +1,10 @@
 from datetime import datetime
 from typing import List
 
-from nonebot import get_bot, get_plugin_config, logger
+from nonebot import get_bot
 from nonebot.adapters.onebot.v11 import MessageSegment
 from nonebot_plugin_apscheduler import scheduler
 
-from .client import NewsFetcher
-from .config import Config
 from .model import FetchedNotice
 from .search import *
 

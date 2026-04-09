@@ -1,7 +1,5 @@
 import nonebot
 from nonebot.adapters.onebot.v11 import Adapter as ONEBOT_V11_Adapter
-from nonebot.adapters.onebot.v12 import Adapter as ONEBOT_V12_Adapter
-
 
 def run_bot():
     nonebot.init(_env_file=".env.prod")
@@ -9,7 +7,6 @@ def run_bot():
     driver = nonebot.get_driver()
 
     driver.register_adapter(ONEBOT_V11_Adapter)
-    driver.register_adapter(ONEBOT_V12_Adapter)
     try:
         print("正在加载基础插件...")
         nonebot.load_plugin("nonebot_plugin_localstore")

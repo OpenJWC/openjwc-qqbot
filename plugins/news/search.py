@@ -94,7 +94,7 @@ async def handle_check(arg: Message = CommandArg()):
         if not all_labels:
             await check_cmd.finish("数据库中目前没有任何资讯记录。")
 
-        matches = process.extract(label, all_labels, fuzz.WRatio, 3)
+        matches = process.extract(label, all_labels, scorer=fuzz.WRatio, limit=3)
         suggestions = [m[0] for m in matches if m[1] > 50]
         if suggestions:
             suggest_text = "、".join(suggestions)

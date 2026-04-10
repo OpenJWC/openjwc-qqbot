@@ -30,8 +30,11 @@
    ```
    A: 使用 `uv run nb orm sync` 初始化数据库。
 
-2. Q: 机器人后端怎么配置？  
+2. Q: 机器人后端怎么配置？    
    A: 推荐 NapCat。请参阅 [NapCat 的文档](https://napneko.github.io/)。配置好后端之后，记得修改 `.env.prod` 中的对应配置。
+
+3. Q: 为什么有些群没办法定时推送通知？  
+   A: 定时推送通知功能需要 Bot 是群管理。
 
 ## 开源
 MIT License

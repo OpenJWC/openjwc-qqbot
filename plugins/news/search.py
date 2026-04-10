@@ -73,6 +73,9 @@ async def handle_check(arg: Message = CommandArg()):
     if not label:
         await check_cmd.finish("请输入要查看的标签名，例如：/check 教务资讯")
 
+    if len(label) > config.openjwc_max_query_length:
+        await search_cmd.finish(f"⚠️ 搜索词太长了（最多 {config.openjwc_max_query_length} 字），请精简你的关键词。")
+
     async with get_session() as session:
         stmt = (
             select(PushedNotice)
@@ -175,6 +178,9 @@ async def handle_search(arg: Message = CommandArg()):
     if len(query) < 2:
         await search_cmd.finish("搜索词太短了，请至少输入两个字符。")
 
+    if len(query) > config.openjwc_max_query_length:
+        await search_cmd.finish(f"⚠️ 搜索词太长了（最多 {config.openjwc_max_query_length} 字），请精简你的关键词。")
+
     fetcher = NewsFetcher(
         host=config.openjwc_host, port=config.openjwc_port,
         auth=config.openjwc_auth_key, device_id=config.openjwc_device_id,
@@ -182,13 +188,7 @@ async def handle_search(arg: Message = CommandArg()):
     )
 
     logger.info(f"正在进行语义搜索: {query}")
-    results = []
-
-    try:
-        results = await fetcher.search_notices(query=query, top_k=10)
-    except Exception as e:
-        logger.error(f"搜索接口请求失败: {e}")
-        await search_cmd.finish("❌ 搜索服务暂时不可用，请稍后再试。")
+    results = await fetcher.search_notices(query=query, top_k=10)
 
     if not results:
         await search_cmd.finish(f"🔍 未能找到与“{query}”相关的资讯。")

@@ -3,6 +3,20 @@
 ## 快速上手
 推荐使用 `uv` 管理本项目。
 
+### 安装uv
+
+若已安装 uv 则可跳过该过程。
+
+```bash
+# Linux/macOS
+curl -LsSf https://astral.sh/uv/install.sh | sh
+
+# Windows
+powershell -ExecutionPolicy ByPass -c "irm https://astral.sh/uv/install.ps1 | iex"
+```
+
+### 运行程序
+
 1. 在仓库根目录创建 `.env.prod` （模板在 `.env.example`）
 2. 运行 `uv sync` 配置好虚拟环境；
 3. 运行 `uv run nb run`； 
